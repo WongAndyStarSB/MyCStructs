@@ -4,14 +4,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
-#include "CStringStruct.h"
-
-
+#include "MyStringStruct.h"
 
 
 String convertToBits(int num) {
-    String s = String_constructor("");
+    String s;
+    if (!String_initEmpty(&s)) { exit(1); }
     unsigned int mask = 1 << (sizeof(num) * 8 - 1); // 10000...000
     for (int i = 0; i < sizeof(num) * 8; ++i) {
         if (mask & num) {
